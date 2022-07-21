@@ -100,7 +100,7 @@ class TextEditor extends Component {
             className="btn btn-light btn-sm"
             style={{ margin: "0 5px 5px 0" }}
           >
-            Saugoti
+            ذخیره
           </button>
           {this.state.canCreateNewDocType && (<button
             type="button"
@@ -108,21 +108,21 @@ class TextEditor extends Component {
             style={{ margin: "0 5px 5px 0" }}
             onClick={() => this.setState({ modalShow: true })}
           >
-            Saugoti šabloną
+            ذخیره قالب
           </button>)}
           <button
             type="button"
             className="btn btn-light btn-sm"
             style={{ margin: "0 5px 5px 0" }}
           >
-            Pateikti
+            ثبت
           </button>
           <button
             type="button"
             className="btn btn-danger btn-sm"
             style={{ marginBottom: "5px" }}
           >
-            Atšaukti
+            لغو
           </button>
             <Modal
               size="md"
@@ -133,7 +133,7 @@ class TextEditor extends Component {
             >
               <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                  Įveskite dokumento pavadinimą
+                  نام سند را وارد کنید
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body>
@@ -143,7 +143,7 @@ class TextEditor extends Component {
               </Modal.Body>
               <Modal.Footer>
                 <button className="btn btn-dark" onClick={this.createDocument}>
-                  Saugoti
+                  ذخیره
                 </button>
               </Modal.Footer>
             </Modal>

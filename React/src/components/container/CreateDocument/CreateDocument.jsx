@@ -94,7 +94,7 @@ class CreateGroup extends Component {
     if (this.state.docSelected) {
       this.setState({ displayEditor: true, errorMessage: "", displayEmptyEditor: false });
     } else {
-      this.setState({ errorMessage: "Pasirinkite dokumento šabloną" })
+      this.setState({ errorMessage: "قالب سند را انتخاب کنید!" })
     }
   };
 
@@ -108,9 +108,9 @@ class CreateGroup extends Component {
     return (
       <div className="containerDocumentCreation">
         <form className="documentCreationForm" onSubmit={this.handleDocsSubmit}>
-          <h1>Pasirinkti dokumento šabloną</h1>
+          <h1>قالب سند را انتخاب کنید</h1>
           <div>
-            <label htmlFor="email">Pasirinkti dokumentą</label>
+            <label htmlFor="email">انتخاب کنید</label>
             <Picky
               options={this.state.docTypes}
               value={this.state.docSelected}
@@ -127,11 +127,11 @@ class CreateGroup extends Component {
           </div>
           {this.state.canCreateDoc && (
             <button className="creationButton" onClick={this.createDocType}>
-              Kurti naują dokumento šabloną
+              ساخت سند جدید
             </button>
           )}
           <button type="submit" className="creationButton">
-            Pildyti dokumentą
+            ثبت سند
           </button>
         </form>
         {this.state.displayEditor && (

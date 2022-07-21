@@ -90,7 +90,7 @@ class GroupsList extends Component {
         <div className="groupListContainer">
           <div className="list-group-doc">
             <div className="list-group-item bg-dark text-light">
-              <h4>Grupės</h4>
+              <h4>گروه</h4>
             </div>
             <div>
               <button
@@ -100,7 +100,7 @@ class GroupsList extends Component {
                 style={{ fontWeight: "bold" }}
                 onClick={this.handleClick}
               >
-                + Kurti naują grupę
+                + ساخت گروه جدید
               </button>
               {this.state.groups.map(groupname => (
                 <button

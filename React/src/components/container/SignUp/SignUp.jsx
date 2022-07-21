@@ -39,29 +39,29 @@ class SignUp extends Component {
     let formErrors = { ...this.state.formErrors };
 
     switch (name) {
-      case "firstname":
+     /* case "firstname":
         formErrors.firstname = letterValidationRegex.test(value)
           ? ""
-          : "Vardą gali sudaryti tik raidės";
+          : "نام شما باید تنها از حروف تشکیل شده باشد";
         break;
       case "lastname":
         formErrors.lastname = letterValidationRegex.test(value)
           ? ""
-          : "Pavardę gali sudaryti tik raidės";
-        break;
+          : "نام خانواندگی شما باید تنها از حروف تشکیل شده باشد";
+        break;*/
       case "email":
         formErrors.email = emailRegex.test(value)
           ? ""
-          : "El. pašto formatas netinkamas (pavyzdys@paštas.lt)";
+          : "آدرس ایمیل به درستی وارد نشده است!";
         break;
       case "password":
         formErrors.password = passwordRegex.test(value)
           ? ""
-          : "Slaptažodis neatitnka reikalavimų (mažiausiai 8 simboliai iš jų bent viena didžioji, viena mažoji raidės ir skaičius)";
+          : "رمز عبور امن نمی‌باشد، رمز عبور شما باید حداقل 8 کاراکتر، شامل حداقل یک حرف بزرگ، یک حرف کوچک و یک عدد باشد";
         break;
       case "repeatPassword":
         formErrors.repeatPassword =
-          value === this.state.password ? "" : "Slaptažodžiai nesutampa";
+          value === this.state.password ? "" : "تکرار رمز عبور اشتباه است!";
         break;
       default:
         break;
@@ -144,7 +144,7 @@ class SignUp extends Component {
         this.props.history.push("/login");
       } else {
         this.setState({
-          errorMessage: "Vartotojas tokiu el. pašto adresu jau egzistuoja"
+          errorMessage: "مشکلی غیر‌منتظره‌ای بوجود آمده است!"
         });
         console.log(userData);
       }
@@ -165,19 +165,19 @@ class SignUp extends Component {
     return (
       <div className="containerSignUp">
         <form className="signUpForm" onSubmit={this.handleSubmitSignUp}>
-          <h1>Sukurti paskyrą</h1>
+          <h1>ثبت نام</h1>
           {this.state.errorMessage.length > 0 && (
             <Alert variant="danger">{this.state.errorMessage}</Alert>
           )}
           <div>
-            <label htmlFor="firstName">Vardas</label>
+            <label htmlFor="firstName">نام</label>
             <input
               type="text"
               className="firstname"
-              placeholder="Vardas"
+              placeholder="نام"
               name="firstname"
-              pattern="^[a-zA-ZĄČĘĖĮŠŲŪąčęėįšųū]+$"
-              title="Jūsų vardą gali sudaryti tik raidės"
+              pattern="^[\u0600-\u06FF\s]+$"
+              title="نام شما فقط می تواند از حروف تشکیل شود."
               value={firstname}
               onChange={this.handleChange}
               maxLength="30"
@@ -189,14 +189,14 @@ class SignUp extends Component {
             )}
           </div>
           <div>
-            <label htmlFor="lastName">Pavardė</label>
+            <label htmlFor="lastName">نام خانوادگی</label>
             <input
               type="text"
               className="lastname"
-              placeholder="Pavardė"
+              placeholder="نام خانوادگی"
               name="lastname"
-              pattern="^[A-Za-zĄČĘĖĮŠŲŪąčęėįšųū]+$"
-              title="Jūsų pavardę gali sudaryti tik raidės"
+              pattern="^[\u0600-\u06FF\s]+$"
+              title="نام خانوادگی شما فقط می تواند از حروف تشکیل شود."
               maxLength="30"
               minLength="2"
               value={lastname}
@@ -208,14 +208,14 @@ class SignUp extends Component {
             )}
           </div>
           <div>
-            <label htmlFor="email">Elektroninis paštas</label>
+            <label htmlFor="email">ایمیل</label>
             <input
               type="email"
               className="email"
-              placeholder="El. paštas"
+              placeholder="ایمیل"
               name="email"
               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-              title="elektroninio pašto formatas yra pavyzdys@paštas.lt"
+              title="نمونه: ali@gmail.com"
               maxLength="40"
               minLength="4"
               value={email}
@@ -227,16 +227,16 @@ class SignUp extends Component {
             )}
           </div>
           <div>
-            <label htmlFor="password">Slaptažodis</label>
+            <label htmlFor="password">رمز عبور</label>
             <input
               type="password"
               className="password"
-              placeholder="Slaptažodis"
+              placeholder="رمز عبور"
               name="password"
               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
               maxLength="30"
               minLength="8"
-              title="Slaptažodį turi sudaryti ne mažiau 8 simboliai iš jų viena bent didžioji raidė, viena mažoji ir skaičius"
+              title="رمز عبور باید حداقل از 8 کاراکتر شامل حداقل یک حرف بزرگ، یک حرف کوچک و یک عدد تشکیل شده باشد."
               value={password}
               onChange={this.handleChange}
               required
@@ -246,16 +246,16 @@ class SignUp extends Component {
             )}
           </div>
           <div>
-            <label htmlFor="password">Pakartoti slaptažodį</label>
+            <label htmlFor="password">تکرار رمز عبور</label>
             <input
               type="password"
               className="repeatPassword"
-              placeholder="Pakartoti slaptažodį"
+              placeholder="تکرار رمز عبور"
               name="repeatPassword"
               maxLength="30"
               minLength="8"
               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-              title="pakartokite slaptažodį"
+              title="تکرار رمز عبور"
               value={repeatPassword}
               onChange={this.handleChange}
               required
@@ -265,10 +265,10 @@ class SignUp extends Component {
             )}
           </div>
           <button type="submit" className="registrationButton">
-            Registruotis
+            ثبت نام
           </button>
           <Link to="/login">
-            <small>Jau esate narys? Prisijunkite</small>
+            <small>قبلا ثبت‌نام کرده‌اید؟ وارد شوید</small>
           </Link>
         </form>
       </div>

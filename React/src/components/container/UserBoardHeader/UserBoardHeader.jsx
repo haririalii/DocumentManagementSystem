@@ -76,7 +76,7 @@ class UserBoardHeader extends Component {
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item to="/login" onClick={this.logout}>
-                  Atsijungti
+                  خروج
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>

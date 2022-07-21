@@ -11,12 +11,12 @@ class DefaultBody extends Component {
       <div className="containerDefaultBody">
         <div className="defaultBodyBox">
           <div className="mainInfo">
-            <h1>Sveiki atvykę į DVS</h1>
+            <h1>به سامانه مدیریت اسناد خوش‌آمدید!</h1>
           </div>
           <div className="intro">
             <img
-              src="http://www.clipartroo.com/images/103/document-clipart-103948.png"
-              alt="dvs"
+              // src="React/src/images/dms.png"
+              alt="اسناد، قبل سازمان"
             />
           </div>
         </div>

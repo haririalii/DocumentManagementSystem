@@ -176,25 +176,25 @@ class DocumentsNavContainer extends Component {
     const documentsStatusList = [
       {
         id: 1,
-        status: "Sukurti dokumentai",
+        status: "سند‌های ساخته شده",
         document: this.state.savedDocuments
       },
       {
         id: 2,
-        status: "Pateikti dokumentai",
+        status: "سند‌های ثبت شده",
         document: this.state.pendingDocuments
       },
       {
         id: 3,
-        status: "Patvirtinti dokumentai",
+        status: "سند‌های تایید شده",
         document: this.state.acceptedDocuments
       },
       {
         id: 4,
-        status: "Atmesti dokumentai",
+        status: "سند‌های رد شده",
         document: this.state.declinedDocuments
       },
-      { id: 5, status: "Visi dokumentai", document: this.state.documents }
+      { id: 5, status: "تمام سند‌ها", document: this.state.documents }
     ];
 
       const getDocsFromDb = async () => {
@@ -223,7 +223,7 @@ class DocumentsNavContainer extends Component {
         <div className="navigationList">
           <div className="list-group-doc">
             <div className="list-group-item bg-dark text-light">
-              <h4>Mano dokumentai</h4>
+              <h4>سند‌های من</h4>
             </div>
             <div>
               <Link to="/createdocument" style={{ textDecoration: "none" }}>
@@ -232,7 +232,7 @@ class DocumentsNavContainer extends Component {
                   className="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
 
                 >
-                  <strong>+ Kurti dokumentą</strong>
+                  <strong>+ ساخت سند</strong>
                 </button>
               </Link>
               {documentsStatusList.map(doc => (

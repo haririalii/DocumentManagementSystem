@@ -45,31 +45,31 @@ class DocumentsList extends Component {
     const columns = [
       {
         dataField: "id",
-        text: "Dokumento Nr.",
+        text: "شناسه",
         sort: true,
         headerStyle: { backgroundColor: "#519e8a", width: "150px" }
       },
       {
         dataField: "name",
-        text: "Vartotojas",
+        text: "نام",
         sort: true,
         headerStyle: bgStyle
       },
       {
         dataField: "type",
-        text: "Dokumento tipas",
+        text: "نوع",
         sort: true,
         headerStyle: bgStyle
       },
       {
         dataField: "status",
-        text: "Būsena",
+        text: "وضعیت",
         sort: true,
         headerStyle: { backgroundColor: "#519e8a", width: "200px" }
       },
       {
         dataField: "date",
-        text: "Data",
+        text: "تاریخ",
         sort: true,
         headerStyle: { backgroundColor: "#519e8a", width: "150px" }
       }
@@ -101,12 +101,14 @@ class DocumentsList extends Component {
                   style={{ marginRight: "5px" }}
                   onClick={() => this.setState({ modalShow: true })}
                 >
-                  Peržiūrėti
+                  بررسی
                 </button>
                 <button className="btn btn-dark" style={{ marginRight: "5px" }}>
-                  Pateikti
+                  تایید
                 </button>
-                <button className="btn btn-danger">Pašalinti</button>
+                <button className="btn btn-danger" style={{ marginRight: "5px" }}>
+                  رد
+                </button>
                 <Modal
                   size="lg"
                   show={this.state.modalShow}
@@ -116,7 +118,7 @@ class DocumentsList extends Component {
                 >
                   <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
-                      Peržiūrimas dokumentas
+                      سند در دست بررسی
                     </Modal.Title>
                   </Modal.Header>
                   <Modal.Body>
@@ -128,17 +130,17 @@ class DocumentsList extends Component {
                       spellCheck={true}
                       readOnly
                     /> */}
-                    <p>Dokumento numeris: {this.state.selected.id}</p>
-                    <p>Pateikėjo vardas: {this.state.selected.name}</p>
-                    <p>Pateikėjo pavardė: {this.state.selected.surname}</p>
-                    <p>Šablono tipas: {this.state.selected.type}</p>
-                    <p>Dokumento statusas: {this.state.selected.status}</p>
-                    <p>Dokumento statuso data: {this.state.selected.date}</p>
-                    <p>Dokumento teksto laukas: {this.state.selected.text}</p>
+                    <p>شناسه سند: {this.state.selected.id}</p>
+                    <p>نام سند: {this.state.selected.name}</p>
+                    <p>ارسال کننده سند: {this.state.selected.surname}</p>
+                    <p>نوع سند: {this.state.selected.type}</p>
+                    <p>وضعیت سند: {this.state.selected.status}</p>
+                    <p>تاریخ انتخاب سند: {this.state.selected.date}</p>
+                    <p>مند انتخابی سند: {this.state.selected.text}</p>
                   </Modal.Body>
                   <Modal.Footer>
                     <button className="btn btn-dark" onClick={modalClose}>
-                      Redaguoti
+                      ویرایش
                     </button>
                   </Modal.Footer>
                 </Modal>

@@ -41,25 +41,25 @@ class DocumentsList extends Component {
       },
       {
         dataField: "name",
-        text: "Pateikėjas",
+        text: "نام",
         sort: true,
         headerStyle: bgStyle
       },
       {
         dataField: "type",
-        text: "Dokumento tipas",
+        text: "نوع سند",
         sort: true,
         headerStyle: bgStyle
       },
       {
         dataField: "status",
-        text: "Būsena",
+        text: "وضعیت",
         sort: true,
         headerStyle: { backgroundColor: "#519e8a", width: "200px" }
       },
       {
         dataField: "date",
-        text: "Data",
+        text: "تاریخ",
         sort: true,
         headerStyle: { backgroundColor: "#519e8a", width: "150px" }
       }

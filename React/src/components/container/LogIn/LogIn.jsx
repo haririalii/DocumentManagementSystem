@@ -72,7 +72,7 @@ class LogIn extends Component {
   render() {
     return (
       <div className="containerLogIn">
-        <h1>Prisijunkite prie sistemos</h1>
+        <h1>ورود به سامانه</h1>
         {this.state.errorMessage.length > 0 && (
           <span className="errorMessage">{this.state.errorMessage}</span>
         )}
@@ -85,7 +85,7 @@ class LogIn extends Component {
               className="form-conrol"
               name="email"
               type="text"
-              placeholder="El. paštas"
+              placeholder="ایمیل"
               aria-describedby="sizing-addon1"
               value={this.state.email}
               onChange={this.handleChange}
@@ -99,16 +99,16 @@ class LogIn extends Component {
               className="form-conrol"
               name="password"
               type="password"
-              placeholder="Slaptažodis"
+              placeholder="رمز عبور"
               value={this.state.password}
               onChange={this.handleChange}
             />
           </div>
           <button type="submit" className="logInButton">
-            Prisijungti
+            ورود
           </button>
           <Link to="/signup">
-            <small>Naujas narys? Registruokis čia</small>
+            <small>هنوز عضو نشده‌اید؟! ثبت نام کنید!</small>
           </Link>
         </form>
       </div>

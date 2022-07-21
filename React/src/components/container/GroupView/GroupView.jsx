@@ -240,8 +240,8 @@ class GroupView extends Component {
                   type="button"
                   className="btn btn-dark"
                 >
-                  <FontAwesomeIcon icon="user" className="text-light" /> Grupės
-                  nariai
+                  <FontAwesomeIcon icon="user" className="text-light" />
+                  اعضا
                 </button>
               </li>
               <li className="nav-item">
@@ -250,7 +250,7 @@ class GroupView extends Component {
                   onClick={() => this.openDocumentsTable(pendingDocuments)}
                 >
                   <FontAwesomeIcon icon="folder-open" className="text-light" />{" "}
-                  Pateikti dokumentai
+                  سند‌های ثبت شده
                 </button>
               </li>
               <li className="nav-item">
@@ -259,7 +259,7 @@ class GroupView extends Component {
                   onClick={() => this.openDocumentsTable(acceptedDocuments)}
                 >
                   <FontAwesomeIcon icon="folder-open" className="text-light" />{" "}
-                  Priimti dokumentai
+                  سند‌های تایید شده
                 </button>
               </li>
               <li className="nav-item">
@@ -268,7 +268,7 @@ class GroupView extends Component {
                   onClick={() => this.openDocumentsTable(declinedDocuments)}
                 >
                   <FontAwesomeIcon icon="folder-open" className="text-light" />{" "}
-                  Atmesti dokumentai
+                  سند‌های رد شده
                 </button>
               </li>
               <li className="nav-item">
@@ -277,7 +277,7 @@ class GroupView extends Component {
                   onClick={() => this.openDocumentsTable(documents)}
                 >
                   <FontAwesomeIcon icon="folder-open" className="text-light" />{" "}
-                  Visi dokumentai
+                  تمام سند‌ها
                 </button>
               </li>
               {this.state.canAdministerGroup && (
@@ -288,7 +288,7 @@ class GroupView extends Component {
                     onClick={this.handleAdminClick}
                   >
                     <FontAwesomeIcon icon="cog" className="text-light" />{" "}
-                    Administruoti grupę
+                    ادمین کردن گروه
                   </button>
                 </li>
               )}
