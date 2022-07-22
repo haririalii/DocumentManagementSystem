@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import "./createDocument.css";
 import Picky from "react-picky";
 import "react-picky/dist/picky.css";
 import RichTextEditor from "../../richTextEditor/RichTextEditor";
-import { hasRole } from "../../Auth";
+import {convertToRaw} from "draft-js";
 
 class CreateGroup extends Component {
   constructor(props) {
@@ -103,6 +103,33 @@ class CreateGroup extends Component {
     localStorage.setItem('doc', "")
   }
 
+  createDocument = async () => {
+    const token = localStorage.getItem("token");
+    const postDoc = await fetch(
+        "http://localhost:8080/api/documents",
+        {
+          method: "POST",
+          headers: {
+            "accept": "application/json",
+            "content-type": "application/json",
+            "authorization": "Bearer " + token
+          },
+          body: JSON.stringify({
+            title: this.state.documentTitle,
+            text: JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()))
+          })
+        }
+    );
+    const res = await postDoc.status;
+    console.log(res);
+
+    if(res === 200){
+      this.setState({
+        modalShow: false
+      })
+    }
+  };
+
   render() {
 
     return (
@@ -126,7 +153,7 @@ class CreateGroup extends Component {
             )}
           </div>
           {this.state.canCreateDoc && (
-            <button className="creationButton" onClick={this.createDocType}>
+            <button className="creationButton" onClick={this.createDocument}>
               ساخت سند جدید
             </button>
           )}

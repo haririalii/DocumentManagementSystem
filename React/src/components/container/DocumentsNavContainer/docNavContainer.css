@@ -4,12 +4,17 @@
 }
 
 .mydocumentsList {
-  float: right;
+  float: left;
   width: 80%;
   margin-bottom: 150px;
 }
 .navigationList {
-  float: left;
+  float: right;
   width: 20%;
   padding: 15px;
+}
+
+.headerNav {
+  text-align: right;
+  direction: rtl;
 }

@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import "./docNavContainer.css";
-import { Link, withRouter } from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import MyDocumentsList from "../MyDocumentsList/MyDocumentsList";
 
 class DocumentsNavContainer extends Component {
@@ -8,129 +8,7 @@ class DocumentsNavContainer extends Component {
     super(props);
     this.state = {
       selectedStatus: "",
-      documents: [
-        {
-          id: 123,
-          name: "Pavardenis Vardenis",
-          type: "Atostogos",
-          status: "Pateiktas",
-          date: "2018-09-06",
-          text: "tekstas tekstas tekstas kazkoks tekstas"
-        },
-        {
-          id: 191,
-          name: "Pavardenis Vardenis",
-          type: "Komandiruote",
-          status: "Sukurtas",
-          date: "2019-01-06"
-        },
-        {
-          id: 161,
-          name: "Pavardenis Vardenis",
-          type: "šaukimas",
-          status: "Atmestas",
-          date: "2019-03-04"
-        },
-        {
-          id: 761,
-          name: "Pavardenis Vardenis",
-          type: "Liga",
-          status: "Atmestas",
-          date: "2017-09-06"
-        },
-        {
-          id: 91,
-          name: "Pavardenis Vardenis",
-          type: "Komandiruote",
-          status: "Patvirtintas",
-          date: "2018-12-09"
-        },
-        {
-          id: 171,
-          name: "Pavardenis Vardenis",
-          type: "Atostogos",
-          status: "Pateiktas",
-          date: "2018-11-25"
-        },
-        {
-          id: 133,
-          name: "Pavardenis Vardenis",
-          type: "Komandiruote",
-          status: "Atmestas",
-          date: "2017-04-07"
-        },
-        {
-          id: 871,
-          name: "Pavardenis Vardenis",
-          type: "Atostogos",
-          status: "Pateiktas",
-          date: "2018-10-06"
-        },
-        {
-          id: 124,
-          name: "Pavardenis Vardenis",
-          type: "Atostogos",
-          status: "Atmestas",
-          date: "2018-11-23"
-        },
-        {
-          id: 176,
-          name: "Pavardenis Vardenis",
-          type: "Komandiruote",
-          status: "Sukurtas",
-          date: "2019-01-22"
-        },
-        {
-          id: 177,
-          name: "Pavardenis Vardenis",
-          type: "Komandiruote",
-          status: "Sukurtas",
-          date: "2019-01-22"
-        },
-        {
-          id: 178,
-          name: "Pavardenis Vardenis",
-          type: "Komandiruote",
-          status: "Atmestas",
-          date: "2019-01-22"
-        },
-        {
-          id: 1700,
-          name: "Pavardenis Vardenis",
-          type: "Komandiruote",
-          status: "Sukurtas",
-          date: "2019-01-22"
-        },
-        {
-          id: 1096,
-          name: "Pavardenis Vardenis",
-          type: "Komandiruote",
-          status: "Pateiktas",
-          date: "2019-01-22"
-        },
-        {
-          id: 17876,
-          name: "Pavardenis Vardenis",
-          type: "Komandiruote",
-          status: "Atmestas",
-          date: "2019-01-22"
-        },
-        {
-          id: 11114,
-          name: "Pavardenis Vardenis",
-          type: "Liga",
-          status: "Atmestas",
-          date: "2019-01-23"
-        },
-        {
-          id: 4568,
-          name: "Pavardenis Vardenis",
-          type: "Komandiruote",
-          status: "Patvirtintas",
-          date: "2019-01-24"
-        }
-      ],
-      savedDocuments: [],
+      documents: [],
       acceptedDocuments: [],
       pendingDocuments: [],
       declinedDocuments: [],
@@ -147,73 +25,86 @@ class DocumentsNavContainer extends Component {
     this.setDifferentDocType();
   }
 
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    return true;
+  }
+
   setDifferentDocType = () => {
-    const savedDocuments = this.state.documents.filter(docs => {
-      return docs.status === "Sukurtas";
-    });
-
-    const acceptedDocuments = this.state.documents.filter(docs => {
-      return docs.status === "Patvirtintas";
-    });
-
-    const pendingDocuments = this.state.documents.filter(docs => {
-      return docs.status === "Pateiktas";
-    });
-
-    const declinedDocuments = this.state.documents.filter(docs => {
-      return docs.status === "Atmestas";
-    });
-    this.setState({
-      savedDocuments: savedDocuments,
-      acceptedDocuments: acceptedDocuments,
-      pendingDocuments: pendingDocuments,
-      declinedDocuments: declinedDocuments
-    });
+    this.setApproved();
+    this.setPending();
+    this.setRejected();
+    this.setAll();
   };
 
-  render() {
+  setApproved = () => {
+    this.getDocsFromDb("APPROVED").then(
+        r => this.setState({
+          acceptedDocuments: r
+        })
+    );
+  }
 
+  setPending = () => {
+    this.getDocsFromDb("PENDING").then(
+        r => this.setState({
+          pendingDocuments: r
+        })
+    );
+  }
+
+  setRejected = () => {
+    this.getDocsFromDb("REJECTED").then(
+        r => this.setState({
+          declinedDocuments: r
+        })
+    );
+  }
+
+  setAll = () => {
+    this.getDocsFromDb("").then(
+        r => this.setState({
+          documents: r
+        })
+    );
+  }
+
+  getDocsFromDb = async (status) => {
+    const token = localStorage.getItem('token')
+    const docs = await fetch('http://localhost:8080/api/documents/all?status=' + status, {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer' + token,
+        'content-type':'application/json'
+      }
+    });
+    if (docs) {
+      const data = await docs.json();
+
+      if (data._embedded)
+        return data._embedded.documentResponseDtoList;
+    }
+    return [];
+  }
+
+  render() {
     const documentsStatusList = [
       {
         id: 1,
-        status: "سند‌های ساخته شده",
-        document: this.state.savedDocuments
-      },
-      {
-        id: 2,
-        status: "سند‌های ثبت شده",
+        status: "سند‌های در انتظار تایید",
         document: this.state.pendingDocuments
       },
       {
-        id: 3,
+        id: 2,
         status: "سند‌های تایید شده",
         document: this.state.acceptedDocuments
       },
       {
-        id: 4,
+        id: 3,
         status: "سند‌های رد شده",
         document: this.state.declinedDocuments
       },
-      { id: 5, status: "تمام سند‌ها", document: this.state.documents }
+      { id: 4, status: "تمام سند‌ها", document: this.state.documents }
     ];
-
-      const getDocsFromDb = async () => {
-        const token = localStorage.getItem('token')
-        const docs = await fetch('http://localhost:8080/api/documents/all', {
-          method: 'GET', 
-          headers: {
-            'Authorization': 'Bearer' + token,
-            'content-type':'application/json'
-          }
-        });
-        const data = await docs.json();
-
-        this.setState({
-          documentsDb: data
-        })
-        
-      }
-      
 
     return (
       <div className="documentsContainer">
@@ -222,7 +113,7 @@ class DocumentsNavContainer extends Component {
         </div>
         <div className="navigationList">
           <div className="list-group-doc">
-            <div className="list-group-item bg-dark text-light">
+            <div className="list-group-item bg-dark text-light headerNav">
               <h4>سند‌های من</h4>
             </div>
             <div>
@@ -232,7 +123,7 @@ class DocumentsNavContainer extends Component {
                   className="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
 
                 >
-                  <strong>+ ساخت سند</strong>
+                  <strong>+ ساخت سند جدید</strong>
                 </button>
               </Link>
               {documentsStatusList.map(doc => (

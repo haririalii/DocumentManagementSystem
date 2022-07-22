@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import "./defaultBody.css";
 
 class DefaultBody extends Component {
@@ -16,7 +16,7 @@ class DefaultBody extends Component {
           <div className="intro">
             <img
               // src="React/src/images/dms.png"
-              alt="اسناد، قبل سازمان"
+              alt="اسناد، قلب سازمان"
             />
           </div>
         </div>

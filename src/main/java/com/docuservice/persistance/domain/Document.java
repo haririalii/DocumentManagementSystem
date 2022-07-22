@@ -2,18 +2,20 @@ package com.docuservice.persistance.domain;
 
 import com.docuservice.security.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import static javax.persistence.EnumType.*;
+import static javax.persistence.EnumType.STRING;
 
+@Getter @Setter
 @Entity
 @Table(name = "documents")
 @EntityListeners(AuditingEntityListener.class)
@@ -21,7 +23,7 @@ import static javax.persistence.EnumType.*;
 public class Document implements Serializable {
 
     public enum DOCUMENT_STATUS {
-        POSTED,
+        PENDING,
         APPROVED,
         REJECTED,
     }
@@ -78,7 +80,7 @@ public class Document implements Serializable {
 
     @Enumerated(value = STRING)
     @Column(name = "document_status")
-    private DOCUMENT_STATUS status = DOCUMENT_STATUS.POSTED;
+    private DOCUMENT_STATUS status = DOCUMENT_STATUS.PENDING;
 
     public Document() {
     }
@@ -93,91 +95,4 @@ public class Document implements Serializable {
         this.text = text;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDocumentNumber() {
-        return documentNumber;
-    }
-
-    public void setDocumentNumber(String documentNumber) {
-        this.documentNumber = documentNumber;
-    }
-
-    public User getUploadedBy() {
-        return uploadedBy;
-    }
-
-    public void setUploadedBy(User uploadedBy) {
-        this.uploadedBy = uploadedBy;
-    }
-
-    public User getApprovedBy() {
-        return approvedBy;
-    }
-
-    public void setApprovedBy(User approvedBy) {
-        this.approvedBy = approvedBy;
-    }
-
-    public List<User> getDocumentReceivers() {
-        return documentReceivers;
-    }
-
-    public void setDocumentReceivers(List<User> documentReceivers) {
-        this.documentReceivers = documentReceivers;
-    }
-
-    public List<UserGroup> getAccessedByGroup() {
-        return accessedByGroup;
-    }
-
-    public void setAccessedByGroup(List<UserGroup> accessedByGroup) {
-        this.accessedByGroup = accessedByGroup;
-    }
-
-    public Date getDocumentCreated() {
-        return documentCreated;
-    }
-
-    public void setDocumentCreated(Date documentCreated) {
-        this.documentCreated = documentCreated;
-    }
-
-    public Date getDocumentUpdated() {
-        return documentUpdated;
-    }
-
-    public void setDocumentUpdated(Date documentUpdated) {
-        this.documentUpdated = documentUpdated;
-    }
-
-    public DOCUMENT_STATUS getStatus() {
-        return status;
-    }
-
-    public void setStatus(DOCUMENT_STATUS status) {
-        this.status = status;
-    }
 }

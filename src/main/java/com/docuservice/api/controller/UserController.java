@@ -1,16 +1,19 @@
 package com.docuservice.api.controller;
 
+import com.docuservice.api.controller.dto.UserResponseDto;
 import com.docuservice.api.controller.exception.ResourceNotFoundException;
+import com.docuservice.api.controller.mapper.DocumentMapper;
+import com.docuservice.persistance.repository.UserRepository;
 import com.docuservice.security.model.User;
 import com.docuservice.security.payload.UserIdentityAvailability;
 import com.docuservice.security.payload.UserProfile;
-import com.docuservice.persistance.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -19,13 +22,15 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private DocumentMapper documentMapper;
 
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @GetMapping("/users")
-    public List<User> getUsers() {
-        return this.userRepository.findAll();
+    public List<UserResponseDto> getUsers() {
+        return this.userRepository.findAll().stream().map(documentMapper::userResponseDto).collect(Collectors.toList());
     }
 
     @GetMapping("/user/checkUsernameAvailability")

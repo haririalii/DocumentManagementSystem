@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import BootstrapTable from "react-bootstrap-table-next";
-import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
+import ToolkitProvider, {Search} from "react-bootstrap-table2-toolkit";
 import filterFactory from "react-bootstrap-table2-filter";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import "react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css";
 import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
 import "./adminMembers.css";
-import { Link, withRouter  } from "react-router-dom";
+import {withRouter} from "react-router-dom";
 
 
 class AdminMembers extends Component {
@@ -16,6 +16,10 @@ class AdminMembers extends Component {
         this.state = { 
             members: []
          }
+    }
+
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        return true;
     }
 
     componentDidMount = async () => {
@@ -57,10 +61,10 @@ class AdminMembers extends Component {
         
     const expandRow = {
     renderer: row => (
-    <div>
+    <div className="itemDetails">
         <p>{ `نقش کاربر: ${row.roles[0].name}` }</p>
-        <p>{ `تاریخ آخرین تغییرات: ${row.updatedAt}` }</p>
-        <p>{ `تاریخ ساخت حساب کاربری: ${row.createdAt}` }</p>
+        <p>{ `تاریخ آخرین تغییرات: ${row.last_modification_date}` }</p>
+        <p>{ `تاریخ ساخت حساب کاربری: ${row.creation_date}` }</p>
         <p>{ `گروه‌های کاربر:` }</p>
     </div>
     ),

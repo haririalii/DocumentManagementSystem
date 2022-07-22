@@ -1,7 +1,7 @@
 package com.docuservice.api.controller;
 
 
-import com.docuservice.api.controller.request.PostNewTemplateRequest;
+import com.docuservice.api.controller.dto.PostNewTemplateDto;
 import com.docuservice.persistance.domain.Template;
 import com.docuservice.persistance.repository.TemplateRepository;
 import com.docuservice.persistance.repository.UserRepository;
@@ -30,7 +30,7 @@ public class NewTemplateController {
     }
 
     @PostMapping("/newtemplate")
-    public Template addNewTemplate(@RequestBody PostNewTemplateRequest newTemplateRequest,
+    public Template addNewTemplate(@RequestBody PostNewTemplateDto newTemplateRequest,
                                    @AuthenticationPrincipal UserPrincipal user) {
 
         User currentUser = userRepository.getOne(user.getId());

@@ -6,6 +6,7 @@
   padding: 15px 0;
   width: 100%;
   float: right;
+  direction: rtl;
 }
 .docsListBox {
   width: 95%;
@@ -15,4 +16,18 @@
   border-radius: 10px;
   box-shadow: 0px 10px 50px rgb(140, 185, 182);
   background-color: #ffffff;
+  direction: rtl;
+  text-align: center;
 }
+
+.reviewModal {
+  text-align: right;
+  direction: rtl;
+}
+
+
+.statusButtons {
+  text-align: left;
+  direction: rtl;
+}
+

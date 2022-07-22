@@ -1,8 +1,10 @@
 package com.docuservice.api.controller;
 
 import com.docuservice.api.controller.exception.AppException;
-import com.docuservice.persistance.domain.UserGroup;
 import com.docuservice.persistance.repository.GroupRepository;
+import com.docuservice.persistance.repository.RoleRepository;
+import com.docuservice.persistance.repository.UserRepository;
+import com.docuservice.security.JwtTokenProvider;
 import com.docuservice.security.model.Role;
 import com.docuservice.security.model.RoleName;
 import com.docuservice.security.model.User;
@@ -10,9 +12,6 @@ import com.docuservice.security.payload.ApiResponse;
 import com.docuservice.security.payload.JwtAuthenticationResponse;
 import com.docuservice.security.payload.LoginRequest;
 import com.docuservice.security.payload.SignUpRequest;
-import com.docuservice.persistance.repository.RoleRepository;
-import com.docuservice.persistance.repository.UserRepository;
-import com.docuservice.security.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -93,10 +92,10 @@ public class AuthController {
 
         user.setRoles(Collections.singleton(userRole));
 
-        UserGroup userGroup = groupRepository.findByGroupName("employee")
-                .orElseThrow(() -> new AppException("User Group not set."));
+//        UserGroup userGroup = groupRepository.findByGroupName("employee")
+//                .orElseThrow(() -> new AppException("User Group not set."));
 
-        user.setUserGroups(Collections.singleton(userGroup));
+//        user.setUserGroups(Collections.singleton(userGroup));
 
         User result = userRepository.save(user);
 

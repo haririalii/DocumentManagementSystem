@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
+import React, {Component} from "react";
+import {Link, withRouter} from "react-router-dom";
 import "./signUp.css";
 import Alert from "react-bootstrap/Alert";
 
@@ -267,9 +267,11 @@ class SignUp extends Component {
           <button type="submit" className="registrationButton">
             ثبت نام
           </button>
-          <Link to="/login">
-            <small>قبلا ثبت‌نام کرده‌اید؟ وارد شوید</small>
-          </Link>
+          <div className="alreadySignedUp">
+            <Link to="/login">
+              <small>قبلا ثبت‌نام کرده‌اید؟ وارد شوید</small>
+            </Link>
+          </div>
         </form>
       </div>
     );
