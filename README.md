@@ -6,9 +6,9 @@ Maven as build tool.
 Component         | Technology
 ---               | ---
 Frontend          | React 16+
-Backend           | Spring Boot 2.1+, Java 8, Hibernate 5+
+Backend           | Spring Boot 2.6.7, Java 8, Hibernate 5
 Security          | Spring Security, JWT
-Database          | MySQL Database
+Database          | PostgreSQL Database
 Persistence       | JPA 
 Client Build      | npm
 Server Build      | Maven
@@ -18,12 +18,12 @@ Server Build      | Maven
 ### Prerequisites
 -  Install Java 8 from the OpenJDK
 -  Install Node.js from the Node.js website
--  Clone the repo `git clone https://github.com/LukasGud/DocumentManagementSystem`
+-  Clone the repo `git clone https://github.com/haririalii/DocumentManagementSystem.git`
 
 ### Backend
 - Go to your project folder from your terminal
 - cd dms
-- name your database schema `documentsdb`
+- enter your database information at `src/main/resources/application.properties`
 - Run: `mvnw spring-boot:run`
 - Run SQL script in SQL folder to populate tables with necessary data
 
